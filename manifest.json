@@ -24,7 +24,7 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js" : ["contentscript.js", "songkick.js", "service.js", "jquery-1.8.3.min.js"],
+      "js" : ["contentscript.js", "songkick.js", "songkick-artist-hostname-definitions.js", "service.js", "helper.js", "jquery-1.8.3.min.js"],
       "run_at" : "document_idle",
       "all_frames" : false
     }

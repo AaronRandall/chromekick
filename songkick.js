@@ -1,11 +1,13 @@
 var PREVIOUS_ARTIST_NAME;
 var API_KEY = "hackday";
 var API_PATH = "http://api.songkick.com/api/3.0/";
+var HOSTNAME_DEFINITION;
+var HOSTNAME_DEFINITION_SEARCHED = false;
 
 var Songkick = {
 
-  documentListener: function(doc, callback) { 
-    artistName = Songkick.getArtistNameFromDocument(document);
+  documentListener: function(doc, hostname, callback) { 
+    artistName = Songkick.getArtistNameFromDocument(doc, hostname);
     console.log("ArtistName is " + artistName)
     
     // If an artist name was found on the page, and it's not the same as the last
@@ -20,43 +22,34 @@ var Songkick = {
     }
   },
 
-  getArtistNameFromDocument: function(doc) {
-    var artist_name;
+  getArtistNameFromDocument: function(doc, hostname) {
+    // Check if the hostname is from our defined list
+    if (!HOSTNAME_DEFINITION_SEARCHED) {
+      HOSTNAME_DEFINITION_SEARCHED = true;
+      HOSTNAME_DEFINITION = Helper.findValueInJSON(ARTIST_HOSTNAME_DEFINITIONS, "Hostname", hostname);
+    }
+
+    if (!HOSTNAME_DEFINITION) {
+      // Hostname not recognised, skip processing this page
+      console.log("Hostname '" + hostname + "' not recognised, skipping.");
+      return null;
+    }
+
+    var extractedArtistName;
     
-    // Search YouTube
-    var nodes = doc.evaluate("//span[@class='metadata-info']/a", doc, null, XPathResult.ANY_TYPE, null)
-    var resultNode = nodes.iterateNext()
+    // Search the url for an artist string using the defined XPATH query
+    nodes = doc.evaluate(HOSTNAME_DEFINITION.Query, doc, null, XPathResult.ANY_TYPE, null)
+    resultNode = nodes.iterateNext();
     if (resultNode) {
-       artist_name = resultNode.innerHTML
-    }
+      resultNode = resultNode.textContent;
     
-    // Search Pitchfork
-    if (!artist_name) {
-      nodes = doc.evaluate("//ul[@class='outbound']/li/a/text()", doc, null, XPathResult.ANY_TYPE, null)
-      resultNode = nodes.iterateNext();
       if (resultNode) {
-        resultNode = resultNode.textContent;
-      
-        if (resultNode) {
-          artist_name = resultNode
-        }
+        extractedArtistName = resultNode
       }
     }
     
-    // Search Deezer
-    if (!artist_name) {
-      nodes = doc.evaluate("//h1[@id='naboo_artist_name']", doc, null, XPathResult.ANY_TYPE, null)
-      resultNode = nodes.iterateNext();
-      if (resultNode) {
-        resultNode = resultNode.textContent;
-        if (resultNode) {
-          artist_name = resultNode
-        }
-      }
-    }
-  
-    if (artist_name) {
-      return $.trim(artist_name);
+    if (extractedArtistName) {
+      return $.trim(extractedArtistName);
     }
     
     return null;
