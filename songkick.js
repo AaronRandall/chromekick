@@ -25,6 +25,7 @@ var Songkick = {
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
     if (!HOSTNAME_DEFINITION_SEARCHED) {
+      console.log("Searching for hostname definition");
       HOSTNAME_DEFINITION_SEARCHED = true;
       HOSTNAME_DEFINITION = Helper.findValueInJSON(ARTIST_HOSTNAME_DEFINITIONS, "Hostname", hostname);
     }
@@ -47,7 +48,7 @@ var Songkick = {
         extractedArtistName = resultNode
       }
     }
-    
+
     if (extractedArtistName) {
       return $.trim(extractedArtistName);
     }

@@ -1,6 +1,6 @@
 // Global variables
 var timeout = null;
-var timeoutValue = 500;
+var timeoutValue = 1000;
 
 // Send the artistId to the popup to handle displaying the track options
 function notifyArtistListener(artistId) {
