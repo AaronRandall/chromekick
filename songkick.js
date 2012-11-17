@@ -11,7 +11,9 @@ var Songkick = {
     // If an artist name was found on the page, and it's not the same as the last
     // one found, send a notification to the artistListener to handle it
     console.log("artistName is:" + artistName + ", PREVIOUS_ARTIST_NAME:" + PREVIOUS_ARTIST_NAME);
-    if (artistName && (artistName !== PREVIOUS_ARTIST_NAME)) {
+
+    if (artistName && (artistName !== PREVIOUS_ARTIST_NAME)){
+      PREVIOUS_ARTIST_NAME = artistName;
       Songkick.getArtistIdFromName(artistName, callback);	
     }	else {
       console.log("Artist (" + artistName + ")already found, not searching.")
@@ -65,14 +67,20 @@ var Songkick = {
 
   getArtistIdFromName_complete: function(response, callback) {
     console.log("In getArtistIdFromName_complete with response " + response)
-    artistName =  response.resultsPage.results.artist[0].displayName; 
-    artistId = response.resultsPage.results.artist[0].id; 
 
-    console.log("Artist found with name:" + artistName + ", and id:" + artistId);
+    // If the results contain artist(s) info, extract and use the result
+    if (response.resultsPage.results.artist) {
+      artistId = response.resultsPage.results.artist[0].id; 
 
-    PREVIOUS_ARTIST_NAME = artistName;
+      PREVIOUS_ARTIST_NAME = artistName;
 
-    callback(artistId);
+      console.log("Artist found with name:'" + artistName + "', and id:" + artistId);
+
+      // Call the callback (notifyArtistListener in contentscript.js)
+      callback(artistId);
+    } else {
+      console.log("Couldn't find an artist from the response");
+    }
   }
 
 };
