@@ -1,0 +1,4 @@
+chromekick
+==========
+
+Songkick Chrome Extension
