@@ -1,11 +1,11 @@
 {
   "name" : "Chromekick",
   "version" : "1.1",
-  "description" : "Artist-aware plugin",
+  "description" : "Detect and track artists from the web",
   "background" : {
-    "scripts": ["background.js"]
+    "scripts": ["scripts/background.js"]
   },
-  "options_page": "options.html",
+  "options_page": "assets/options.html",
  "permissions": [
    "tabs",
    "chrome://favicon/",
@@ -14,9 +14,9 @@
  ],
   "page_action" :
   {
-    "default_icon" : "songkick.png",
+    "default_icon" : "assets/images/songkick.png",
     "default_title" : "Artist found on page",
-    "default_popup": "popup.html"
+    "default_popup": "assets/popup.html"
   },
   "content_scripts" : [
     {
@@ -24,21 +24,21 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js" : ["contentscript.js", 
-              "songkick.js", 
-              "songkick-artist-hostname-definitions.js", 
-              "service.js", 
-              "helper.js", 
-              "globals.js",
-              "constants.js", 
-              "jquery-1.8.3.min.js"],
+      "js" : ["scripts/contentscript.js", 
+              "scripts/songkick.js", 
+              "scripts/songkick-artist-hostname-definitions.js", 
+              "scripts/service.js", 
+              "scripts/helper.js", 
+              "scripts/globals.js",
+              "scripts/constants.js", 
+              "scripts/jquery-1.8.3.min.js"],
       "run_at" : "document_idle",
       "all_frames" : false
     }
   ],
   "icons" : {
-    "48" : "songkick-48.png",
-    "128" : "songkick-128.png"
+    "48" :  "assets/images/songkick-48.png",
+    "128" : "assets/images/songkick-128.png"
   },
   "manifest_version": 2
 }
