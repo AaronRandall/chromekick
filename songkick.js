@@ -47,9 +47,11 @@ var Songkick = {
     if (!artist_name) {
       nodes = doc.evaluate("//h1[@id='naboo_artist_name']", doc, null, XPathResult.ANY_TYPE, null)
       resultNode = nodes.iterateNext();
-      resultNode = resultNode.textContent;
       if (resultNode) {
-        artist_name = resultNode
+        resultNode = resultNode.textContent;
+        if (resultNode) {
+          artist_name = resultNode
+        }
       }
     }
   
