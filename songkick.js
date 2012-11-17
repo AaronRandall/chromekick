@@ -1,14 +1,3 @@
-var Constants = {
-  apiKey: "hackday",
-  apiPath: "http://api.songkick.com/api/3.0/"
-};
-
-var GlobalVars = {
-  previousArtistName: null,
-  hostnameDefinition: null,
-  hostnameDefinitionSearched: false
-};
-
 var Songkick = {
   // <summary>
   // Analyse a document for artist names and call 
