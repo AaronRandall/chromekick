@@ -1,36 +1,43 @@
-var PREVIOUS_ARTIST_NAME;
-var API_KEY = "hackday";
-var API_PATH = "http://api.songkick.com/api/3.0/";
-var HOSTNAME_DEFINITION;
-var HOSTNAME_DEFINITION_SEARCHED = false;
+var Constants = {
+  apiKey: "hackday",
+  apiPath: "http://api.songkick.com/api/3.0/"
+};
+
+var GlobalVars = {
+  previousArtistName: null,
+  hostnameDefinition: null,
+  hostnameDefinitionSearched: false
+};
 
 var Songkick = {
-
-  documentListener: function(doc, hostname, callback) { 
+  // <summary>
+  // Analyse a document for artist names and call 
+  // the provided callback function with an artist id
+  // </summary>
+  documentAnalyser: function(doc, hostname, callback) { 
     artistName = Songkick.getArtistNameFromDocument(doc, hostname);
-    console.log("ArtistName is " + artistName)
     
     // If an artist name was found on the page, and it's not the same as the last
     // one found, send a notification to the artistListener to handle it
-    console.log("artistName is:" + artistName + ", PREVIOUS_ARTIST_NAME:" + PREVIOUS_ARTIST_NAME);
-
-    if (artistName && (artistName !== PREVIOUS_ARTIST_NAME)){
-      PREVIOUS_ARTIST_NAME = artistName;
+    if (artistName && (artistName !== GlobalVars.previousArtistName)){
+      GlobalVars.previousArtistName = artistName;
       Songkick.getArtistIdFromName(artistName, callback);	
     }	else {
       console.log("Artist (" + artistName + ")already found, not searching.")
     }
   },
 
+  // <summary>
+  // Attempt to extract an artist name from a document
+  // </summary>
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
-    if (!HOSTNAME_DEFINITION_SEARCHED) {
-      console.log("Searching for hostname definition");
-      HOSTNAME_DEFINITION_SEARCHED = true;
-      HOSTNAME_DEFINITION = Helper.findValueInJSON(ARTIST_HOSTNAME_DEFINITIONS, "Hostname", hostname);
+    if (!GlobalVars.hostnameDefinitionSearched) {
+      GlobalVars.hostnameDefinitionSearched = true;
+      GlobalVars.hostnameDefinition = Helper.findValueInJSON(ARTIST_HOSTNAME_DEFINITIONS, "Hostname", hostname);
     }
 
-    if (!HOSTNAME_DEFINITION) {
+    if (!GlobalVars.hostnameDefinition) {
       // Hostname not recognised, skip processing this page
       console.log("Hostname '" + hostname + "' not recognised, skipping.");
       return null;
@@ -39,11 +46,10 @@ var Songkick = {
     var extractedArtistName;
     
     // Search the url for an artist string using the defined XPATH query
-    nodes = doc.evaluate(HOSTNAME_DEFINITION.Query, doc, null, XPathResult.ANY_TYPE, null)
+    nodes = doc.evaluate(GlobalVars.hostnameDefinition.Query, doc, null, XPathResult.ANY_TYPE, null)
     resultNode = nodes.iterateNext();
     if (resultNode) {
       resultNode = resultNode.textContent;
-    
       if (resultNode) {
         extractedArtistName = resultNode
       }
@@ -56,19 +62,25 @@ var Songkick = {
     return null;
   },
 
+  // <summary>
+  // Attempt to get a Songkick artist id from a string name, using the Songkick API
+  // </summary>
   getArtistIdFromName: function(artistName, callback) {
-    var url = API_PATH + "search/artists.json?query=" + artistName + "&apikey=" + API_KEY;
+    var url = Constants.apiPath + "search/artists.json?query=" + artistName + "&apikey=" + Constants.apiKey;
     Service.get(url, callback, Songkick.getArtistIdFromName_complete);
   },
 
+  // <summary>
+  // Callback for: Attempt to get a Songkick artist id from a string name, using the Songkick API
+  // </summary>
   getArtistIdFromName_complete: function(response, callback) {
     console.log("In getArtistIdFromName_complete with response " + response)
 
-    // If the results contain artist(s) info, extract and use the result
+    // If the results contain artist(s) info, extract and use the first result
     if (response.resultsPage.results.artist) {
       artistId = response.resultsPage.results.artist[0].id; 
 
-      PREVIOUS_ARTIST_NAME = artistName;
+      GlobalVars.previousArtistName = artistName;
 
       console.log("Artist found with name:'" + artistName + "', and id:" + artistId);
 

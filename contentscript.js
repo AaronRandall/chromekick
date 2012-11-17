@@ -13,7 +13,7 @@ function notifyArtistListener(artistId) {
 function listener()
 {
   currentHostname = Helper.extractCoreHostnameDetails(window.location.hostname);
-  Songkick.documentListener(document, currentHostname, notifyArtistListener);
+  Songkick.documentAnalyser(document, currentHostname, notifyArtistListener);
 }
 
 // The Ajax listener event that fires when the DOM has been modified
