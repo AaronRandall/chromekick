@@ -22,9 +22,9 @@ var Songkick = {
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
     if (!Globals.hostnameDefinitionSearched) {
-      console.log("global artist lookup def is" + artistLookupDefinitions);
+      console.log("global artist lookup def is" + Globals.artistLookupDefinitions);
       Globals.hostnameDefinitionSearched = true;
-      Globals.hostnameDefinition = Helper.findValueInJSON(artistLookupDefinitions, "Hostname", hostname);
+      Globals.hostnameDefinition = Helper.findValueInJSON(Globals.artistLookupDefinitions, "Hostname", hostname);
     }
 
     if (!Globals.hostnameDefinition) {

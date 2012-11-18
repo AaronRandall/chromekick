@@ -1,15 +1,15 @@
 var Globals = {
   previousArtistName: null,
   hostnameDefinition: null,
-  hostnameDefinitionSearched: false
+  hostnameDefinitionSearched: false,
+  artistLookupDefinitions: null
 };
 
 
 var storageKey = 'artistLookupDefinitions';
 var storage = chrome.storage.local;
-var artistLookupDefinitions = "empty";
 
-//storage.remove(storageKey);
+storage.remove(storageKey);
 
 storage.get(storageKey,function(response){
   if (!response[storageKey]) {
@@ -18,8 +18,8 @@ storage.get(storageKey,function(response){
     Service.get(Constants.definitionsUri, null, definitionsCallback);
   } else {
     console.log(storageKey + " value is stored already, as:", response);
-    artistLookupDefinitions = response["artistLookupDefinitions"];
-    console.log("set artistlookupdefs to :" + artistLookupDefinitions);
+    Globals.artistLookupDefinitions = response["artistLookupDefinitions"];
+    console.log("set artistlookupdefs to :" + Globals.artistLookupDefinitions);
   }
 });
 
@@ -32,9 +32,9 @@ function definitionsCallback(response, callback) {
   storage.set(obj);
 
   // Assign the fetched definition file to global var
-  artistLookupDefinitions = response;
+  Globals.artistLookupDefinitions = response;
 
-  console.log("global artist definition = " + artistLookupDefinitions);
+  console.log("global artist definition = " + Globals.artistLookupDefinitions);
 }
 
 
