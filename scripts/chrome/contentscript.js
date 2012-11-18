@@ -1,7 +1,3 @@
-// Global variables
-var timeout = null;
-var timeoutValue = 1000;
-
 // Send the artistId to the popup to handle displaying the track options
 function notifyArtistListener(artistId) {
 	console.log("in notifyArtistListener. artistId:" + artistId);	  
@@ -17,9 +13,10 @@ function listener()
 }
 
 // The Ajax listener event that fires when the DOM has been modified
+var timeout = null;
 document.addEventListener("DOMSubtreeModified", function() {
   if(timeout) {
       clearTimeout(timeout);
   }
-  timeout = setTimeout(listener, timeoutValue);
+  timeout = setTimeout(listener, Constants.domModifiedTimeoutValue);
 }, false);

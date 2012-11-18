@@ -1,8 +1,6 @@
 var Songkick = {
-  // <summary>
   // Analyse a document for artist names and call 
   // the provided callback function with an artist id
-  // </summary>
   documentAnalyser: function(doc, hostname, callback) { 
     artistName = Songkick.getArtistNameFromDocument(doc, hostname);
     
@@ -16,9 +14,7 @@ var Songkick = {
     }
   },
 
-  // <summary>
   // Attempt to extract an artist name from a document
-  // </summary>
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
     if (!Globals.hostnameDefinitionSearched) {
@@ -52,17 +48,13 @@ var Songkick = {
     return null;
   },
 
-  // <summary>
   // Attempt to get a Songkick artist id from a string name, using the Songkick API
-  // </summary>
   getArtistIdFromName: function(artistName, callback) {
     var url = Constants.apiPath + "search/artists.json?query=" + artistName + "&apikey=" + Constants.apiKey;
     Service.get(url, callback, Songkick.getArtistIdFromName_complete);
   },
 
-  // <summary>
   // Callback for: Attempt to get a Songkick artist id from a string name, using the Songkick API
-  // </summary>
   getArtistIdFromName_complete: function(response, callback) {
     console.log("In getArtistIdFromName_complete with response " + response)
 

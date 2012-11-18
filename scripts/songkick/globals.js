@@ -5,16 +5,17 @@ var Globals = {
   artistLookupDefinitions: null
 };
 
-
+// Logic below this line is responsible for retrieving and storing
+// the remote artistLookupDefinitions JSON file.
 var storageKey = 'artistLookupDefinitions';
 var storage = chrome.storage.local;
 
-storage.remove(storageKey);
+// Uncomment to clear localStorage key
+//storage.remove(storageKey);
 
 storage.get(storageKey,function(response){
   if (!response[storageKey]) {
     console.log(storageKey + " doesn't exist in localStorage, attempting to populate now");
-    console.log("starting defitions fetch");
     Service.get(Constants.definitionsUri, null, definitionsCallback);
   } else {
     console.log(storageKey + " value is stored already, as:", response);
