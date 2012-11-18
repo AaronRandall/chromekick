@@ -4,7 +4,6 @@ var Helper = {
     for (var index = 0; index < jsonObject.length; ++index) {
 
      var current = jsonObject[index];
-     console.log("* current json is" + current);
 
       if(current[jsonKey] == valueToFind) {
          return current;
