@@ -8,6 +8,7 @@
   "options_page": "assets/options.html",
  "permissions": [
    "tabs",
+   "storage",
    "chrome://favicon/",
    "http://*/*", 
    "https://*/*"
@@ -24,14 +25,14 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js" : ["scripts/chrome/contentscript.js", 
-              "scripts/songkick/songkick.js", 
-              "scripts/songkick/songkick-artist-hostname-definitions.js", 
-              "scripts/songkick/globals.js",
-              "scripts/songkick/constants.js", 
+      "js" : [
               "scripts/shared/service.js", 
               "scripts/shared/helper.js", 
-              "scripts/shared/jquery-1.8.3.min.js"],
+              "scripts/shared/jquery-1.8.3.min.js",
+              "scripts/songkick/globals.js",
+              "scripts/songkick/constants.js", 
+              "scripts/songkick/songkick.js", 
+              "scripts/chrome/contentscript.js"],
       "run_at" : "document_idle",
       "all_frames" : false
     }

@@ -8,8 +8,8 @@ var Songkick = {
     
     // If an artist name was found on the page, and it's not the same as the last
     // one found, send a notification to the artistListener to handle it
-    if (artistName && (artistName !== GlobalVars.previousArtistName)){
-      GlobalVars.previousArtistName = artistName;
+    if (artistName && (artistName !== Globals.previousArtistName)){
+      Globals.previousArtistName = artistName;
       Songkick.getArtistIdFromName(artistName, callback);	
     }	else {
       console.log("Artist (" + artistName + ")already found, not searching.")
@@ -21,12 +21,13 @@ var Songkick = {
   // </summary>
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
-    if (!GlobalVars.hostnameDefinitionSearched) {
-      GlobalVars.hostnameDefinitionSearched = true;
-      GlobalVars.hostnameDefinition = Helper.findValueInJSON(ARTIST_HOSTNAME_DEFINITIONS, "Hostname", hostname);
+    if (!Globals.hostnameDefinitionSearched) {
+      console.log("global artist lookup def is" + artistLookupDefinitions);
+      Globals.hostnameDefinitionSearched = true;
+      Globals.hostnameDefinition = Helper.findValueInJSON(artistLookupDefinitions, "Hostname", hostname);
     }
 
-    if (!GlobalVars.hostnameDefinition) {
+    if (!Globals.hostnameDefinition) {
       // Hostname not recognised, skip processing this page
       console.log("Hostname '" + hostname + "' not recognised, skipping.");
       return null;
@@ -35,7 +36,7 @@ var Songkick = {
     var extractedArtistName;
     
     // Search the url for an artist string using the defined XPATH query
-    nodes = doc.evaluate(GlobalVars.hostnameDefinition.Query, doc, null, XPathResult.ANY_TYPE, null)
+    nodes = doc.evaluate(Globals.hostnameDefinition.Query, doc, null, XPathResult.ANY_TYPE, null)
     resultNode = nodes.iterateNext();
     if (resultNode) {
       resultNode = resultNode.textContent;
@@ -69,7 +70,7 @@ var Songkick = {
     if (response.resultsPage.results.artist) {
       artistId = response.resultsPage.results.artist[0].id; 
 
-      GlobalVars.previousArtistName = artistName;
+      Globals.previousArtistName = artistName;
 
       console.log("Artist found with name:'" + artistName + "', and id:" + artistId);
 
