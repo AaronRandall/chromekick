@@ -26,6 +26,7 @@
         "https://*/*"
       ],
       "js" : [
+              "scripts/songkick/definitions.js", 
               "scripts/shared/service.js", 
               "scripts/shared/helper.js", 
               "scripts/shared/jquery-1.8.3.min.js",
