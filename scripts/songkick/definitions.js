@@ -6,7 +6,7 @@ var localArtistLookupDefinitions = [
   {"Hostname": "nme.com",                  "Query": "//a[contains(@class, 'artistLink')][1]/text()"},
   {"Hostname": "deezer.com",               "Query": "//h1[@id='naboo_artist_name']"},
   {"Hostname": "thefourohfive.com",        "Query": "//strong[1]"},
-  {"Hostname": "thelineofbestfit.com",     "Query": "//strong[1]"},
+  {"Hostname": "thelineofbestfit.com",     "Query": "//div[@itemprop='description']/p[2]/strong[1]/a[1]/text()"},
   {"Hostname": "drownedinsound.com",       "Query": "//a[contains(@class, 'tag')][1]/text()"},
   {"Hostname": "thisisfakediy.co.uk",      "Query": "//ul[@class='artists']//h4/a/text()"},
   {"Hostname": "abeano.com",               "Query": "//a[contains(@rel, 'tag')][1]/text()"},
@@ -19,5 +19,13 @@ var localArtistLookupDefinitions = [
   {"Hostname": "datpiff.com",              "Query": "//div[@class='content']/h1/text()[1]"},
   {"Hostname": "pigeonsandplanes.com",     "Query": "//div[contains(@id,'main_content')]/div/p/a/text()[1]"},
   {"Hostname": "rdio.com",                 "Query": "//div[contains(@class,'artist_page')]//div[@class='name']/a/text()"},
-  {"Hostname": "bbc.co.uk",                "Query": "//div[@id='now-playing']/p[@class='artist']/a/text()"}
+  {"Hostname": "bbc.co.uk",                "Query": "//div[@id='now-playing']/p[@class='artist']/a/text()"},
+  {"Hostname": "soundcloud.com",           "Query": "//h1[contains(@class, 'userInfo__title')]/text()[1]"},
+  {"Hostname": "stereogum.com", "Query": "//a[contains(@rel, 'tag')][1]/text()"},
+  {"Hostname": "myspace.com",              "Query": "//section[contains(@class,'sitesHeader')]//a[@class='userLink']/text()"},
+  {"Hostname": "ticketmaster.com",         "Query": "//ol[@itemprop='breadcrumb']//li[contains(@id,'seo_bc_prodtitle')]/span"},
+  {"Hostname": "twitter.com", "Query": "//h1[contains(@class,'fullname')]/text()[1]"},
+  {"Hostname": "bandcamp.com",             "Query": "//div[@id='name-section']//span[@itemprop='byArtist']/a/text()"},
+  {"Hostname": "http://musicfansmic.net/", "Query": "//p/strong[1]/a/text()[1]"},
+  {"Hostname": "last.fm",                  "Query": "//article[contains(@class,'artist-overview')]//h1[@itemprop='name']/text()"}
 ];
