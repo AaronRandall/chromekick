@@ -4,7 +4,7 @@ var localArtistLookupDefinitions = [
   {"Hostname": "consequenceofsound.net",   "Query": "//div[@class='after-post']/p/a/text()"},
   {"Hostname": "stereogum.com",            "Query": "//div[contains(@class,'line_bottom')]/a/text()"},
   {"Hostname": "nme.com",                  "Query": "//a[contains(@class, 'artistLink')][1]/text()"},
-  {"Hostname": "deezer.com",               "Query": "//h1[@id='naboo_artist_name']"}
+  {"Hostname": "deezer.com",               "Query": "//h1[@id='naboo_artist_name']"},
   {"Hostname": "thefourohfive.com",        "Query": "//strong[1]"},
   {"Hostname": "thelineofbestfit.com",     "Query": "//strong[1]"},
   {"Hostname": "drownedinsound.com",       "Query": "//a[contains(@class, 'tag')][1]/text()"},
