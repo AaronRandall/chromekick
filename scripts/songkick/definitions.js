@@ -7,5 +7,5 @@ var localArtistLookupDefinitions = [
   {"Hostname": "deezer.com",               "Query": "//h1[@id='naboo_artist_name']"}
   {"Hostname": "thefourohfive.com",        "Query": "//strong[1]"},
   {"Hostname": "thelineofbestfit.com",     "Query": "//strong[1]"},
-  {"Hostname": "thequietus.com",           "Query": "//h2/text()"}
+  {"Hostname": "drownedinsound.com",       "Query": "//a[contains(@class, 'tag')][1]/text()"}
 ];
