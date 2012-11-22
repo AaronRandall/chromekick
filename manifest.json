@@ -36,6 +36,11 @@
               "scripts/chrome/contentscript.js"],
       "run_at" : "document_idle",
       "all_frames" : false
+    },
+    {
+      "matches": ["http://of1-dev-aaron.srv.songkick.net:3000/robots.txt*"],
+      "js": ["oauth2/oauth2_inject.js"],
+             "run_at": "document_start"
     }
   ],
   "icons" : {
