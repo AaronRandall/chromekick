@@ -12,8 +12,9 @@ var localArtistLookupDefinitions = [
   {"Hostname": "abeano.com",               "Query": "//a[contains(@rel, 'tag')][1]/text()"},
   {"Hostname": "thefader.com",             "Query": "//span[@class='tag-links-wide']//a[1]/text()"},
   {"Hostname": "spin.com",                 "Query": "//article[contains(@class,'article')]//footer/nav[@class='row']/div[contains(@class,'tagged')]/div[contains(@class,'field')]/div[@class='field-items']/a[1]/text()"},
-  {"Hostname": "open.spotify.com",         "Query": "//h2/a/text()"}
+  {"Hostname": "open.spotify.com",         "Query": "//h2/a/text()"},
   {"Hostname": "thisismyjam.com",          "Query": "//div[@class='container']//h1[@id='jamArtist']/text()"},
   {"Hostname": "hypetrak.com",             "Query": "//div[@class='artist']/div[@class='content']/text()"},
-  {"Hostname": "roughtrade.com",           "Query": "//h1/text()[1]"}
+  {"Hostname": "roughtrade.com",           "Query": "//h1/text()[1]"},
+  {"Hostname": "datpiff.com",              "Query": "//div[@class='content']/h1/text()[1]"}
 ];
