@@ -16,5 +16,8 @@ var localArtistLookupDefinitions = [
   {"Hostname": "thisismyjam.com",          "Query": "//div[@class='container']//h1[@id='jamArtist']/text()"},
   {"Hostname": "hypetrak.com",             "Query": "//div[@class='artist']/div[@class='content']/text()"},
   {"Hostname": "roughtrade.com",           "Query": "//h1/text()[1]"},
-  {"Hostname": "datpiff.com",              "Query": "//div[@class='content']/h1/text()[1]"}
+  {"Hostname": "datpiff.com",              "Query": "//div[@class='content']/h1/text()[1]"},
+  {"Hostname": "pigeonsandplanes.com"      "Query": "//div[contains(@id,'main_content')]/div/p/a/text()[1]"},
+  {"Hostname": "rdio.com",                 "Query": "//div[contains(@class,'artist_page')]//div[@class='name']/a/text()"},
+  {"Hostname": "www.bbc.co.uk/radio/player/bbc_radio_one" "Query": "//div[@id='now-playing']/p[@class='artist']/a/text()"}
 ];
