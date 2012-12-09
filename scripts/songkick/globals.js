@@ -11,10 +11,10 @@ var storageKey = 'artistLookupDefinitions';
 var storage = chrome.storage.local;
 
 // Uncomment to clear localStorage key
-console.log("localStorage for Chromekick is being cleared")
+Log.debug("localStorage for Chromekick is being cleared")
 storage.remove(storageKey);
 
-console.log('loading definitions file from local');
+Log.debug('loading definitions file from local');
 var loadDefinitionsFromFile = true;
 
 if (loadDefinitionsFromFile) {
@@ -23,18 +23,18 @@ if (loadDefinitionsFromFile) {
 
   storage.get(storageKey,function(response){
     if (!response[storageKey]) {
-      console.log(storageKey + " doesn't exist in localStorage, attempting to populate now");
+      Log.debug(storageKey + " doesn't exist in localStorage, attempting to populate now");
       Service.get(Constants.definitionsUri, null, definitionsCallback);
     } else {
-      console.log(storageKey + " value is stored already, as:", response);
+      Log.debug(storageKey + " value is stored already, as:", response);
       Globals.artistLookupDefinitions = response["artistLookupDefinitions"];
-      console.log("set artistlookupdefs to :" + Globals.artistLookupDefinitions);
+      Log.debug("set artistlookupdefs to :" + Globals.artistLookupDefinitions);
     }
   });
 }
 
 function definitionsCallback(response, callback) {
-  console.log("Response is:" + response);
+  Log.debug("Response is:" + response);
   
   // Write the fetched definition file to local storage
   var obj= {};
@@ -44,7 +44,7 @@ function definitionsCallback(response, callback) {
   // Assign the fetched definition file to global var
   Globals.artistLookupDefinitions = response;
 
-  console.log("global artist definition = " + Globals.artistLookupDefinitions);
+  Log.debug("global artist definition = " + Globals.artistLookupDefinitions);
 }
 
 

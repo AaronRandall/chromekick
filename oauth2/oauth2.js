@@ -137,13 +137,13 @@ OAuth2.prototype.getAccessAndRefreshTokens = function(authorizationCode, callbac
   var items = that.adapter.accessTokenParams(authorizationCode, that.getConfig());
   var key = null;
   if (method == 'POST-QUERYSTRING') {
-    console.log("** posting with querystring");
+    Log.debug("** posting with querystring");
     var params = items;
     var pairs = [];
     for (var key in params) pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
     var querystring = pairs.join('&');
-    console.log("** posting querystring values:" + querystring);
-    console.log("** posting fullurl values:" + that.adapter.accessTokenURL() + querystring);
+    Log.debug("** posting querystring values:" + querystring);
+    Log.debug("** posting fullurl values:" + that.adapter.accessTokenURL() + querystring);
 
     xhr.open('POST', that.adapter.accessTokenURL(), true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -183,7 +183,7 @@ OAuth2.prototype.refreshAccessToken = function(refreshToken, callback) {
   xhr.onreadystatechange = function(event) {
     if (xhr.readyState == 4) {
       if(xhr.status == 200) {
-        console.log(xhr.responseText);
+        Log.debug(xhr.responseText);
         // Parse response with JSON
         var obj = JSON.parse(xhr.responseText);
         // Callback with the tokens
@@ -227,12 +227,12 @@ OAuth2.prototype.finishAuth = function() {
     // The following works around bug: crbug.com/84201
     //window.open('', '_self', '');
     //window.close();
-    console.log("** would have closed, but don't");
+    Log.debug("** would have closed, but don't");
   }
 
   try {
     authorizationCode = that.adapter.parseAuthorizationCode(window.location.href);
-    console.log(authorizationCode);
+    Log.debug(authorizationCode);
   } catch (e) {
     console.error(e);
     callback(e);

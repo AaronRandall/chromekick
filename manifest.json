@@ -6,13 +6,13 @@
     "scripts": ["scripts/chrome/background.js"]
   },
   "options_page": "assets/options.html",
- "permissions": [
-   "tabs",
-   "storage",
-   "chrome://favicon/",
-   "http://*/*", 
-   "https://*/*"
- ],
+  "permissions": [
+    "tabs",
+    "storage",
+    "chrome://favicon/",
+    "http://*/*", 
+    "https://*/*"
+  ],
   "page_action" :
   {
     "default_icon" : "assets/images/songkick.png",
@@ -26,21 +26,23 @@
         "https://*/*"
       ],
       "js" : [
-              "scripts/songkick/definitions.js", 
-              "scripts/shared/service.js", 
-              "scripts/shared/helper.js", 
-              "scripts/shared/jquery-1.8.3.min.js",
-              "scripts/songkick/globals.js",
-              "scripts/songkick/constants.js", 
-              "scripts/songkick/songkick.js", 
-              "scripts/chrome/contentscript.js"],
+        "scripts/songkick/constants.js", 
+        "scripts/songkick/definitions.js", 
+        "scripts/shared/service.js", 
+        "scripts/shared/helper.js", 
+        "scripts/shared/logger.js", 
+        "scripts/shared/jquery-1.8.3.min.js",
+        "scripts/songkick/globals.js",
+        "scripts/songkick/songkick.js", 
+        "scripts/chrome/contentscript.js"
+      ],
       "run_at" : "document_idle",
       "all_frames" : false
     },
     {
       "matches": ["http://of1-dev-aaron.srv.songkick.net:3000/robots.txt*"],
       "js": ["oauth2/oauth2_inject.js"],
-             "run_at": "document_start"
+      "run_at": "document_start"
     }
   ],
   "icons" : {

@@ -21,11 +21,14 @@ var localArtistLookupDefinitions = [
   {"Hostname": "rdio.com",                 "Query": "//div[contains(@class,'artist_page')]//div[@class='name']/a/text()"},
   {"Hostname": "bbc.co.uk",                "Query": "//div[@id='now-playing']/p[@class='artist']/a/text()"},
   {"Hostname": "soundcloud.com",           "Query": "//h1[contains(@class, 'userInfo__title')]/text()[1]"},
-  {"Hostname": "stereogum.com", "Query": "//a[contains(@rel, 'tag')][1]/text()"},
+  {"Hostname": "stereogum.com",            "Query": "//a[contains(@rel, 'tag')][1]/text()"},
   {"Hostname": "myspace.com",              "Query": "//section[contains(@class,'sitesHeader')]//a[@class='userLink']/text()"},
   {"Hostname": "ticketmaster.com",         "Query": "//ol[@itemprop='breadcrumb']//li[contains(@id,'seo_bc_prodtitle')]/span"},
-  {"Hostname": "twitter.com", "Query": "//h1[contains(@class,'fullname')]/text()[1]"},
+  {"Hostname": "ticketmaster.co.uk",       "Query": "//ol[@itemprop='breadcrumb']//li[contains(@id,'seo_bc_prodtitle')]/span"},
+  {"Hostname": "twitter.com",              "Query": "//h1[contains(@class,'fullname')]/text()[1]"},
   {"Hostname": "bandcamp.com",             "Query": "//div[@id='name-section']//span[@itemprop='byArtist']/a/text()"},
-  {"Hostname": "http://musicfansmic.net/", "Query": "//p/strong[1]/a/text()[1]"},
-  {"Hostname": "last.fm",                  "Query": "//article[contains(@class,'artist-overview')]//h1[@itemprop='name']/text()"}
+  {"Hostname": "musicfansmic.net", "Query": "//p/strong[1]/a/text()[1]"},
+  {"Hostname": "last.fm",                  "Query": "//article[contains(@class,'artist-overview')]//h1[@itemprop='name']/text()"},
+  {"Hostname": "hypem.com",                "Query": "//div/a[1][contains (@href,'/artist/')]/text()[1]"},
+  {"Hostname": "rateyourmusic.com",        "Query": "//a[contains(@href, 'artist')]/text()"}
 ];

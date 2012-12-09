@@ -1,7 +1,85 @@
 body {
   margin: 0px;
-  padding: 0px;
   background-color: #373737;
   font-family: 'helvetica neue', helvetica, sans-serif;
   color: white;
+  height: 200px;
+  width: 300px;
+}
+
+div#artist-name {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 21px;
+}
+
+div#artist-upcoming-events-title {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+div#artist-upcoming-events {
+  text-align: center;
+}
+
+div#artist-upcoming-events > a{
+ color: white;
+ font-size:13px;
+}
+
+button#track {
+  margin-left: 95px;
+  margin-top: 15px;
+  -webkit-appearance: none;
+  -webkit-border-image: none;
+  -webkit-box-align: center;
+  -webkit-rtl-ordering: logical;
+  -webkit-user-select: text;
+  background-color: #EAEAEA;
+  background-repeat: no-repeat;
+  border-bottom-color: white;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: white;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: white;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: white;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  box-sizing: border-box;
+  color: #F80046;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Lucida Grande';
+  font-size: 9px;
+  font-weight: bold;
+  height: 22px;
+  letter-spacing: normal;
+  line-height: 11.433333396911621px;
+  list-style-type: none;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  min-width: 104px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 4px;
+  position: static;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-shadow: white 0px 1px 0px;
+  text-transform: uppercase;
+  vertical-align: baseline;
+  white-space: pre;
+  width: 104px;
+  word-spacing: 0px;
 }

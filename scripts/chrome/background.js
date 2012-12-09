@@ -2,9 +2,10 @@ var data = {}; // Object storing data indexed by tab id
 
 function onRequest(request, sender, sendResponse) {
 	// Show the page action for the tab that the sender (content script) was on
-	console.log("* " + request['search_term'])
+	console.log("* " + request['artist_id'])
+	console.log("* " + request['artist_name'])
 	
-	data[sender.tab.id] = request['search_term']
+	data[sender.tab.id] = [request['artist_id'], request['artist_name']]
 	
 	// Show the SK icon in the address bar
 	chrome.pageAction.show(sender.tab.id);

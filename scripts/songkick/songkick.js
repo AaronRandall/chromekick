@@ -10,7 +10,7 @@ var Songkick = {
       Globals.previousArtistName = artistName;
       Songkick.getArtistIdFromName(artistName, callback);	
     }	else {
-      console.log("Artist (" + artistName + ")already found, not searching.")
+      Log.debug("Artist (" + artistName + ") already found, not searching SK API for artist ID.")
     }
   },
 
@@ -18,14 +18,14 @@ var Songkick = {
   getArtistNameFromDocument: function(doc, hostname) {
     // Check if the hostname is from our defined list
     if (!Globals.hostnameDefinitionSearched) {
-      console.log("global artist lookup def is" + Globals.artistLookupDefinitions);
+      Log.debug("global artist lookup def is :" + Globals.artistLookupDefinitions);
       Globals.hostnameDefinitionSearched = true;
       Globals.hostnameDefinition = Helper.findValueInJSON(Globals.artistLookupDefinitions, "Hostname", hostname);
     }
 
     if (!Globals.hostnameDefinition) {
       // Hostname not recognised, skip processing this page
-      console.log("Hostname '" + hostname + "' not recognised, skipping.");
+      Log.debug("Hostname '" + hostname + "' not recognised, skipping.");
       return null;
     }
 
@@ -56,7 +56,7 @@ var Songkick = {
 
   // Callback for: Attempt to get a Songkick artist id from a string name, using the Songkick API
   getArtistIdFromName_complete: function(response, callback) {
-    console.log("In getArtistIdFromName_complete with response " + response)
+    Log.debug("In getArtistIdFromName_complete with response " + response)
 
     // If the results contain artist(s) info, extract and use the first result
     if (response.resultsPage.results.artist) {
@@ -64,12 +64,12 @@ var Songkick = {
 
       Globals.previousArtistName = artistName;
 
-      console.log("Artist found with name:'" + artistName + "', and id:" + artistId);
+      Log.debug("Artist found with name:'" + artistName + "', and id:" + artistId);
 
       // Call the callback (notifyArtistListener in contentscript.js)
-      callback(artistId);
+      callback(artistId, artistName);
     } else {
-      console.log("Couldn't find an artist from the response");
+      Log.debug("Couldn't find an artist from the response");
     }
   }
 

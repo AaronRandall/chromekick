@@ -1,7 +1,7 @@
 // Send the artistId to the popup to handle displaying the track options
-function notifyArtistListener(artistId) {
-	console.log("in notifyArtistListener. artistId:" + artistId);	  
-	chrome.extension.sendRequest({search_term: artistId}, function(response) {});
+function notifyArtistListener(artistId, artistName) {
+  Log.debug("in notifyArtistListener. artistId:" + artistId + ", artistName:" + artistName);	  
+	chrome.extension.sendRequest({artist_id: artistId, artist_name: artistName}, function(response) {});
 }
 
 // The Songkick document listener which handles analysing the document 

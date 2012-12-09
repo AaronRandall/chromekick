@@ -5,12 +5,16 @@
     <link href="styles/popup.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <script src="../../scripts/songkick/constants.js"></script>
     <script src="../../oauth2/oauth2.js"></script>
     <script src="../../scripts/chrome/popup.js"></script>
     <p id="debug-window" style="font-size:12px;margin:0px;padding:0px;">
     	<!--Retrieving artist info: <span id="artist-name"></span>-->
-    	<img src="ajax-loader.gif" style="position:absolute; top:42px; left:75px;" />
+    	<!--<img src="ajax-loader.gif" style="position:absolute; top:42px; left:75px;" />-->
     </p>
-    <iframe id="songkick-iframe" scrolling="no" frameborder="0" src="" width="367" height="290"></iframe>
+    <div id="artist-name"></div>
+    <button type="button" id="track">Track Artist</button>
+    <div id="artist-upcoming-events-title">Upcoming events</div>
+    <div id="artist-upcoming-events"></div>
   </body>
 </html>

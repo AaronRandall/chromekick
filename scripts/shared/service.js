@@ -7,13 +7,13 @@ var Service = {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
         //handle the xhr response here
-        console.log(xhr);
+        Log.debug(xhr);
         if (xhr.status === 200) {
           var jsonResponse = JSON.parse(xhr.responseText);
-          console.log(jsonResponse);
+          Log.debug(jsonResponse);
           serviceCallback(jsonResponse, callback);
         } else {
-          console.log("Invalid response received");
+          Log.debug("Invalid response received");
           return null;
         }
       }
