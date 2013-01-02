@@ -1,4 +1,4 @@
 chromekick
 ==========
 
-Songkick Chrome Extension
+Songkick Chrome Extension.
