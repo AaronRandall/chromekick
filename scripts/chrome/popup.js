@@ -43,7 +43,7 @@ function checkIfTrackingArtistWithId(artistId) {
   console.log("** Attempting to see if already tracking artist");
 
   var apiUrl = "https://api-staging.songkick.net/api/3.0";
-  var trackingUrl = "/users/:me/trackings/artist:" + artistId + ".json?apikey=hackday"
+  var trackingUrl = "/users/:me/trackings/artist:" + artistId + ".json?apikey=" + Constants.apiKey
  
   var requestUrl = apiUrl + trackingUrl;
 
@@ -66,7 +66,7 @@ function trackArtistWithId(artistId) {
   console.log("** Attempting to track artist");
 
   var apiUrl = "https://api-staging.songkick.net/api/3.0";
-  var trackingUrl = "/users/:me/trackings/artist:" + artistId + ".json?apikey=hackday"
+  var trackingUrl = "/users/:me/trackings/artist:" + artistId + ".json?apikey=" + Constants.apiKey
  
   var requestUrl = apiUrl + trackingUrl;
 
@@ -90,7 +90,7 @@ function getArtistUpcomingEvents(artistId) {
   console.log("** getting artist upcoming events");
 
   var apiUrl = "https://api-staging.songkick.net/api/3.0";
-  var trackingUrl = "/artists/" + artistId + "/calendar.json?apikey=hackday&order=desc&page=1&per_page=3"
+  var trackingUrl = "/artists/" + artistId + "/calendar.json?apikey=" + Constants.apiKey + "&order=desc&page=1&per_page=3"
  
   var requestUrl = apiUrl + trackingUrl;
 
