@@ -30,5 +30,8 @@ var localArtistLookupDefinitions = [
   {"Hostname": "musicfansmic.net", "Query": "//p/strong[1]/a/text()[1]"},
   {"Hostname": "last.fm",                  "Query": "//article[contains(@class,'artist-overview')]//h1[@itemprop='name']/text()"},
   {"Hostname": "hypem.com",                "Query": "//div/a[1][contains (@href,'/artist/')]/text()[1]"},
-  {"Hostname": "rateyourmusic.com",        "Query": "//a[contains(@href, 'artist')]/text()"}
+  {"Hostname": "rateyourmusic.com",        "Query": "//a[contains(@href, 'artist')]/text()"},
+  {"Hostname": "crackintheroad.com",       "Query": "//span[contains(@class, 'artist name')]/a /text()"},
+  {"Hostname": "bandcamp.com",             "Query": "//span[contains(@itemprop,'byArtist')]/a/text()[1]"}
+
 ];
