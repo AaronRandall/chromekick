@@ -1,40 +1,42 @@
 var artistId;
 var accessToken;
 
-var googleAuth = new OAuth2('google', {
+
+var songkickAuth = new OAuth2('songkick-adapter', {
   client_id: Constants.oauthClientId,
   client_secret: Constants.oauthClientSecret,
   api_scope: Constants.oauthApiScope
 });
 
-googleAuth.authorize(function() {
+songkickAuth.authorize(function() {
   // Ready for action, can now make requests with
   console.log("** attempting to authorize with songkick oauth2");
-  accessToken = googleAuth.getAccessToken();
+  accessToken = songkickAuth.getAccessToken();
   console.log("** got access token of:" + accessToken);
 });
 
 chrome.tabs.getSelected(null, function(tab) {
 	console.log("* in get selected")
 	console.log("* tab id is:" + tab.id)
-  	artistId = chrome.extension.getBackgroundPage().data[tab.id][0];
-  	artistName = chrome.extension.getBackgroundPage().data[tab.id][1];
-  	
-  	// debug, show the artist name
-  	console.log("artistId is " + artistId);
-  	console.log("artistName is " + artistName);
 
-    document.getElementById("artist-name").innerHTML = artistName;
-    document.getElementById("track").addEventListener('click', clickHandler); 
-    getArtistUpcomingEvents(artistId);
+  artistId = chrome.extension.getBackgroundPage().data[tab.id][0];
+  artistName = chrome.extension.getBackgroundPage().data[tab.id][1];
+  
+  // debug, show the artist name
+  console.log("artistId is " + artistId);
+  console.log("artistName is " + artistName);
+
+  document.getElementById("artist-name").innerHTML = artistName;
+  document.getElementById("track").addEventListener('click', clickHandler); 
+  getArtistUpcomingEvents(artistId);
 });
 
 function clickHandler(e) { PopupClick('SHOW'); }
 
 function PopupClick(str) {
   console.log("button clicked");
-  //trackArtistWithId(artistId);
-  //checkIfTrackingArtistWithId(artistId);
+  trackArtistWithId(artistId);
+  checkIfTrackingArtistWithId(artistId);
 }
 
 function checkIfTrackingArtistWithId(artistId) {
@@ -87,7 +89,6 @@ function trackArtistWithId(artistId) {
 function getArtistUpcomingEvents(artistId) {
   console.log("** getting artist upcoming events");
 
-http://api.songkick.com/api/3.0/artists/705029/calendar.json?apikey=hackday&order=desc&page=1&per_page=3
   var apiUrl = "https://api-staging.songkick.net/api/3.0";
   var trackingUrl = "/artists/" + artistId + "/calendar.json?apikey=hackday&order=desc&page=1&per_page=3"
  

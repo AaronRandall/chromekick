@@ -23,6 +23,7 @@
  * @param {String} config Alternatively, OAuth2.FINISH for the finish flow
  */
 var OAuth2 = function(adapterName, config) {
+  console.log("[INFO] adapterName in constructor=" + adapterName);
   this.adapterName = adapterName;
   var that = this;
   OAuth2.loadAdapter(adapterName, function() {
@@ -121,6 +122,7 @@ OAuth2.prototype.openAuthorizationCodePopup = function(callback) {
  *                            access token, refresh token and expiry time
  */
 OAuth2.prototype.getAccessAndRefreshTokens = function(authorizationCode, callback) {
+  console.log("in prototype.getAccessAndRefreshTokens");
   var that = this;
   // Make an XHR to get the token
   var xhr = new XMLHttpRequest();
@@ -137,16 +139,17 @@ OAuth2.prototype.getAccessAndRefreshTokens = function(authorizationCode, callbac
   var items = that.adapter.accessTokenParams(authorizationCode, that.getConfig());
   var key = null;
   if (method == 'POST-QUERYSTRING') {
-    Log.debug("** posting with querystring");
+    console.log("** posting with querystring");
     var params = items;
     var pairs = [];
     for (var key in params) pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
     var querystring = pairs.join('&');
-    Log.debug("** posting querystring values:" + querystring);
-    Log.debug("** posting fullurl values:" + that.adapter.accessTokenURL() + querystring);
+    console.log("** posting querystring values:" + querystring);
+    console.log("** posting fullurl values:" + that.adapter.accessTokenURL() + querystring);
 
     xhr.open('POST', that.adapter.accessTokenURL(), true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    console.log("[INFO] sending querystring stuff to access token url=" + that.adapter.accessTokenURL());
     xhr.send(querystring);
 
   } else if (method == 'POST') {
@@ -183,7 +186,7 @@ OAuth2.prototype.refreshAccessToken = function(refreshToken, callback) {
   xhr.onreadystatechange = function(event) {
     if (xhr.readyState == 4) {
       if(xhr.status == 200) {
-        Log.debug(xhr.responseText);
+        console.log(xhr.responseText);
         // Parse response with JSON
         var obj = JSON.parse(xhr.responseText);
         // Callback with the tokens
@@ -207,6 +210,7 @@ OAuth2.prototype.refreshAccessToken = function(refreshToken, callback) {
  * leg of the OAuth 2.0 process.
 */
 OAuth2.prototype.finishAuth = function() {
+console.log("[INFO] in finishAuth logic");
   var authorizationCode = null;
   var that = this;
 
@@ -227,12 +231,12 @@ OAuth2.prototype.finishAuth = function() {
     // The following works around bug: crbug.com/84201
     //window.open('', '_self', '');
     //window.close();
-    Log.debug("** would have closed, but don't");
+    console.log("** would have closed, but don't");
   }
 
   try {
     authorizationCode = that.adapter.parseAuthorizationCode(window.location.href);
-    Log.debug(authorizationCode);
+    console.log(authorizationCode);
   } catch (e) {
     console.error(e);
     callback(e);
@@ -355,6 +359,8 @@ OAuth2.prototype.getConfig = function() {
  * @param callback {Function} Called as soon as the adapter has been loaded
  */
 OAuth2.loadAdapter = function(adapterName, callback) {
+  console.log("[INFO] adapterName=" + adapterName);
+  console.log("[INFO] callback=" + callback);
   // If it's already loaded, don't load it again
   if (OAuth2.adapters[adapterName]) {
     callback();

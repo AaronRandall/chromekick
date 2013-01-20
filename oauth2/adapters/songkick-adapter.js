@@ -1,4 +1,4 @@
-OAuth2.adapter('google', {
+OAuth2.adapter('songkick-adapter', {
   authorizationCodeURL: function(config) {
     return ('https://staging.songkick.net/oauth/login?' +
       'oauth_version=v2-10&' + 
@@ -25,7 +25,7 @@ OAuth2.adapter('google', {
   },
 
   accessTokenURL: function() {
-    return 'https://staging.songkick.net/oauth/exchange';
+    return 'https://staging.songkick.net/oauth/exchange/';
   },
 
   accessTokenMethod: function() {
