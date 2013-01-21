@@ -32,6 +32,9 @@ var localArtistLookupDefinitions = [
   {"Hostname": "hypem.com",                "Query": "//div/a[1][contains (@href,'/artist/')]/text()[1]"},
   {"Hostname": "rateyourmusic.com",        "Query": "//a[contains(@href, 'artist')]/text()"},
   {"Hostname": "crackintheroad.com",       "Query": "//span[contains(@class, 'artist name')]/a /text()"},
+  {"Hostname": "facebook.com",             "Query": "//div[contains(@class, 'name')]/h2/span[contains(@itemprop, 'name')]/text()"},
+  {"Hostname": "musicfansmic.net",         "Query": "//div[contains(@class, 'post')]/p/a/strong/text()"},
+  {"Hostname": "neongoldrecords.blogspot.co.uk",  "Query": "//span[contains(@class, 'post-labels')]/a[contains(@rel, 'tag')]/text()"},
   {"Hostname": "bandcamp.com",             "Query": "//span[contains(@itemprop,'byArtist')]/a/text()[1]"}
 
 ];
