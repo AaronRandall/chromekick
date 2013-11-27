@@ -36,6 +36,7 @@ var localArtistLookupDefinitions = [
   {"Hostname": "musicfansmic.net",         "Query": "//div[contains(@class, 'post')]/p/a/strong/text()"},
   {"Hostname": "neongoldrecords.blogspot.co.uk",  "Query": "//span[contains(@class, 'post-labels')]/a[contains(@rel, 'tag')]/text()"},
   {"Hostname": "daytrotter.com",           "Query": "//section[contains(@id,'Session')]/div[contains(@id,'SessionDetail')]/h1/text()"},
+  {"Hostname": "audiomack.com",            "Query": "//i[contains(@class,'caPlayer')]/i[contains(@class,'pinfo')]/span[contains(@class,'pband')]/text()"},
   {"Hostname": "bandcamp.com",             "Query": "//span[contains(@itemprop,'byArtist')]/a/text()[1]"}
 
 ];
